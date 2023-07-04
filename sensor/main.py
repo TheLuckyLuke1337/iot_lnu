@@ -4,8 +4,8 @@ from time import sleep_ms
 
 from sensor_utils import read_soil_sensor, read_dht_sensor
 
-PERIOD_TIME = 2000    # PERIOD_TIME must be larger than
-PUMPING_TIME = 1000   # PUMPING_TIME
+PERIOD_TIME = 20000    # PERIOD_TIME must be larger than
+PUMPING_TIME = 20000   # PUMPING_TIME
 MOISTURE_THRESHOLD = 50
 
 
@@ -25,10 +25,10 @@ while True:
     soil_moisture = read_soil_sensor(soil_moisture_sensor, soil_moisture_power)
     print(f"Soil: {soil_moisture:.0f}% Water: {water_level}\n" +
           f"Temperature: {temperature} C Humidity: {humidity}%")
+    water_pump.value(0)
     if water_level and soil_moisture < MOISTURE_THRESHOLD:
         water_pump.value(1)
         sleep_ms(PUMPING_TIME)
-        water_pump.value(0)
         sleep_ms(PERIOD_TIME-PUMPING_TIME)
     else:
         sleep_ms(PERIOD_TIME)
