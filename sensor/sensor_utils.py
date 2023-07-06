@@ -20,7 +20,7 @@ def read_soil_sensor(soil_moisture, soil_moisture_power=None):
         soil_moisture_power.value(0)
     else:
         reading = soil_moisture.read_u16()
-    return analog2percent(reading)
+    return round(analog2percent(reading))
 
 
 def analog2percent(x, in_min=53150, in_max=20200, out_min=0, out_max=100):

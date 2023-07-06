@@ -23,7 +23,7 @@ while True:
     humidity = dht_sensor.humidity()
     water_level = water_sensor.value()
     soil_moisture = read_soil_sensor(soil_moisture_sensor, soil_moisture_power)
-    print(f"Soil: {soil_moisture:.0f}% Water: {water_level}\n" +
+    print(f"Soil: {soil_moisture}% Water: {water_level}\n" +
           f"Temperature: {temperature} C Humidity: {humidity}%")
     water_pump.value(0)
     if water_level and soil_moisture < MOISTURE_THRESHOLD:
